@@ -1,0 +1,18 @@
+services:
+  db:
+    image: postgres:16
+    container_name: pgmastery-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: pgmastery
+      POSTGRES_PASSWORD: pgmastery
+      POSTGRES_DB: pgmastery
+    ports:
+      # Non-default host port so this never collides with a Postgres
+      # already running for another project on 5432.
+      - "5544:5432"
+    volumes:
+      - pgmastery_data:/var/lib/postgresql/data
+
+volumes:
+  pgmastery_data:

@@ -1,0 +1,41 @@
+-- ╔══════════════════════════════════════════════════════════╗
+--   Problem 22: Avoiding N+1 — One Query Instead of Many
+--   [Performance]  [Medium]
+--   node coach.js problem 22   → guiding questions
+--   node coach.js hint 22 1    → first hint (up to 3)
+-- ╚══════════════════════════════════════════════════════════╝
+
+-- PROBLEM ──────────────────────────────────────────────────
+-- Imagine app code doing this (the N+1 anti-pattern):
+--
+--   customers = SELECT * FROM customers WHERE customer_id BETWEEN 1795 AND 1805;
+--   for each customer in customers:
+--       count = SELECT count(*) FROM orders WHERE customer_id = customer.id;
+--       -- 1 query for the list + 11 more queries in the loop = 12 round trips
+--
+-- Replace the WHOLE thing with ONE query: for customers 1795
+-- through 1805, return customer_id, full_name, and order_count
+-- — including customers with ZERO orders (customer_id 1801+ have
+-- none, by design).
+--
+--   Result:
+--   ┌─────────────┬──────────────┬─────────────┐
+--   │ customer_id │ full_name    │ order_count │
+--   ├─────────────┼──────────────┼─────────────┤
+--   │ 1795        │ Customer 1795│ 27          │
+--   │ ...         │ ...          │ ...         │
+--   │ 1801        │ Customer 1801│ 0           │  ← has a row, count 0
+--   │ 1805        │ Customer 1805│ 0           │
+--   └─────────────┴──────────────┴─────────────┘
+--
+-- THINK BEFORE CODING ──────────────────────────────────────
+-- • What is wrong with "1 query for the list + 1 query per row"
+--   as data grows?
+-- • Which JOIN keeps customers with zero orders, and why not
+--   plain JOIN?
+
+-- ▶▶▶ YOUR SOLUTION — write your query between the markers ▶▶▶
+
+-- your query here
+
+-- ◀◀◀ END SOLUTION ◀◀◀

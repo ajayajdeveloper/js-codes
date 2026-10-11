@@ -1,0 +1,41 @@
+-- ╔══════════════════════════════════════════════════════════╗
+--   Problem 10: LEFT JOIN — Customers With Zero Orders
+--   [Joins]  [Medium]
+--   node coach.js problem 10   → guiding questions
+--   node coach.js hint 10 1    → first hint (up to 3)
+-- ╚══════════════════════════════════════════════════════════╝
+
+-- PROBLEM ──────────────────────────────────────────────────
+-- Find every customer who has never placed an order — the
+-- classic "anti-join" (find rows with NO match on the other side).
+--
+--   customers                         orders
+--   ┌─────────────┬───────┐           ┌──────────┬─────────────┐
+--   │ customer_id │ name  │           │ order_id │ customer_id │
+--   ├─────────────┼───────┤           ├──────────┼─────────────┤
+--   │ 1           │ Alice │           │ 501      │ 1           │
+--   │ 2           │ Bob   │           │ 502      │ 1           │
+--   │ 3           │ Carol │           └──────────┴─────────────┘
+--   └─────────────┴───────┘           (Bob and Carol never order)
+--
+--   Result:
+--   ┌─────────────┬───────┐
+--   │ customer_id │ name  │
+--   ├─────────────┼───────┤
+--   │ 2           │ Bob   │
+--   │ 3           │ Carol │
+--   └─────────────┴───────┘
+--
+-- Return customer_id, full_name, country for every such customer,
+-- ordered by customer_id.
+--
+-- THINK BEFORE CODING ──────────────────────────────────────
+-- • If you LEFT JOIN customers to orders, what does a customer
+--   with no orders look like in the joined row?
+-- • How do you filter for "no match on the right side"?
+
+-- ▶▶▶ YOUR SOLUTION — write your query between the markers ▶▶▶
+
+-- your query here
+
+-- ◀◀◀ END SOLUTION ◀◀◀

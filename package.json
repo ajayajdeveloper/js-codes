@@ -1,0 +1,9 @@
+{
+  "name": "js-update",
+  "version": "1.0.0",
+  "description": "JavaScript interview coaching practice — 16 problems with hints, tests, and solutions",
+  "scripts": {
+    "list":     "node coach.js list",
+    "test-all": "node coach.js test-all"
+  }
+}

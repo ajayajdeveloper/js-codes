@@ -1,0 +1,43 @@
+-- ╔══════════════════════════════════════════════════════════╗
+--   Problem 21: Sargable Rewrite — Function-on-Column Anti-Pattern
+--   [Performance]  [Medium]
+--   node coach.js problem 21   → guiding questions
+--   node coach.js hint 21 1    → first hint (up to 3)
+-- ╚══════════════════════════════════════════════════════════╝
+
+-- PROBLEM ──────────────────────────────────────────────────
+-- This query is CORRECT but not "sargable" (Search ARGument
+-- ABLE) — wrapping signup_date in EXTRACT() forces Postgres to
+-- compute EXTRACT() for every single row, so no index on the
+-- raw signup_date column can ever be used:
+--
+--   -- the slow, non-sargable version (do NOT write this):
+--   SELECT customer_id, full_name, signup_date
+--   FROM customers
+--   WHERE EXTRACT(YEAR FROM signup_date) = 2019;
+--
+-- Rewrite it as an equivalent RANGE condition directly on the
+-- raw column — same result set, but now a plain B-tree index on
+-- signup_date could actually be used.
+--
+--   Result (shape — customers who signed up any time in 2019):
+--   ┌─────────────┬───────────────┬─────────────┐
+--   │ customer_id │ full_name     │ signup_date │
+--   ├─────────────┼───────────────┼─────────────┤
+--   │ 8           │ Customer 8    │ 2019-01-08  │
+--   │ 373         │ Customer 373  │ 2019-01-09  │
+--   └─────────────┴───────────────┴─────────────┘
+--
+-- Return: customer_id, full_name, signup_date, ordered by
+-- customer_id.
+--
+-- THINK BEFORE CODING ──────────────────────────────────────
+-- • Why can't a B-tree index on signup_date help a query
+--   filtering on EXTRACT(YEAR FROM signup_date) = 2019?
+-- • How do you express "the whole year 2019" as a >= / < range?
+
+-- ▶▶▶ YOUR SOLUTION — write your query between the markers ▶▶▶
+
+-- your query here
+
+-- ◀◀◀ END SOLUTION ◀◀◀

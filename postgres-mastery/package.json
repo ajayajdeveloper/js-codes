@@ -1,0 +1,15 @@
+{
+  "name": "postgres-mastery",
+  "version": "1.0.0",
+  "description": "PostgreSQL coaching practice — schema design, DDL/DML, joins, aggregates, window functions, and performance — against a real, isolated dockerized Postgres.",
+  "scripts": {
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down",
+    "db:reset": "docker exec -i pgmastery-db psql -U pgmastery -d pgmastery -v ON_ERROR_STOP=1 -f /dev/stdin < db/schema.sql && docker exec -i pgmastery-db psql -U pgmastery -d pgmastery -v ON_ERROR_STOP=1 -f /dev/stdin < db/seed.sql",
+    "list": "node coach.js list",
+    "problem": "node coach.js problem",
+    "hint": "node coach.js hint",
+    "test": "node coach.js test",
+    "test-all": "node coach.js test-all"
+  }
+}

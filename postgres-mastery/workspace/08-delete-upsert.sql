@@ -1,0 +1,53 @@
+-- ╔══════════════════════════════════════════════════════════╗
+--   Problem 8: DELETE and UPSERT (ON CONFLICT)   [DML]  [Medium]
+--   node coach.js problem 8   → guiding questions
+--   node coach.js hint 8 1    → first hint (up to 3)
+-- ╚══════════════════════════════════════════════════════════╝
+
+-- PROBLEM ──────────────────────────────────────────────────
+--   sandbox.carts                    sandbox.expired_sessions
+--   ┌─────────────┬────────────┐     ┌─────────────┐
+--   │ customer_id │ product_id │     │ customer_id │
+--   ├─────────────┼────────────┤     ├─────────────┤
+--   │ 1           │ 10         │     │ 1           │
+--   │ 2           │ 20         │     │ 3           │
+--   │ 3           │ 30         │     └─────────────┘
+--   └─────────────┴────────────┘
+--
+--   sandbox.inventory
+--   ┌────────────┬───────────┐
+--   │ product_id │ stock_qty │
+--   ├────────────┼───────────┤
+--   │ 10         │ 5         │
+--   └────────────┴───────────┘
+--
+-- DO TWO THINGS:
+--   1. Delete every cart row belonging to a customer whose
+--      customer_id appears in expired_sessions (customers 1
+--      and 3 — customer 2's cart survives).
+--   2. Restock inventory with an UPSERT: add 3 units to product
+--      10 (which already exists — 5+3=8) and add a NEW row for
+--      product 20 with 8 units (which doesn't exist yet).
+--      One INSERT ... ON CONFLICT statement should handle both.
+--
+--   Result:
+--   sandbox.carts                    sandbox.inventory
+--   ┌─────────────┬────────────┐     ┌────────────┬───────────┐
+--   │ customer_id │ product_id │     │ product_id │ stock_qty │
+--   ├─────────────┼────────────┤     ├────────────┼───────────┤
+--   │ 2           │ 20         │     │ 10         │ 8         │
+--   └─────────────┴────────────┘     │ 20         │ 8         │
+--                                     └────────────┴───────────┘
+--
+-- THINK BEFORE CODING ──────────────────────────────────────
+-- • How do you delete rows in one table based on a condition in
+--   another table?
+-- • What does "upsert" mean, and which Postgres clause implements it?
+-- • If a row with that key already exists, should you overwrite
+--   it or add to it?
+
+-- ▶▶▶ YOUR SOLUTION — write your DML between the markers ▶▶▶
+
+-- your DELETE and INSERT ... ON CONFLICT statements here
+
+-- ◀◀◀ END SOLUTION ◀◀◀

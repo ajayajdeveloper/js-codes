@@ -1,0 +1,40 @@
+// ⚠️  SPOILERS — Attempt C-leetcode-grind/understanding/07-move-zeroes.js first!
+// ══════════════════════════════════════════════════════════════
+//  Solution: Move Zeroes
+// ══════════════════════════════════════════════════════════════
+
+// O(n) time  O(1) space
+function moveZeroes(nums) {
+  let insertPos = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== 0) {
+      nums[insertPos] = nums[i];
+      insertPos++;
+    }
+  }
+  for (let i = insertPos; i < nums.length; i++) {
+    nums[i] = 0;
+  }
+  return nums;
+}
+
+const TESTS = [
+  { args: [[0, 1, 0, 3, 12]], expected: [1, 3, 12, 0, 0] },
+  { args: [[0]], expected: [0] },
+  { args: [[1, 2, 3]], expected: [1, 2, 3] },
+  { args: [[0, 0, 1]], expected: [1, 0, 0] },
+];
+
+if (require.main === module) {
+  let score = 0;
+  TESTS.forEach(({ args, expected }, i) => {
+    const result = moveZeroes(...args);
+    const ok = JSON.stringify(result) === JSON.stringify(expected);
+    score += ok ? 1 : 0;
+    console.log(`Test ${i + 1}: ${ok ? '✅' : '❌'}  got ${JSON.stringify(result)}`);
+  });
+  console.log(`\n${score}/${TESTS.length} passed${score === TESTS.length ? ' 🎉' : ''}`);
+  if (score < TESTS.length) process.exit(1);
+}
+
+module.exports = { moveZeroes, TESTS };

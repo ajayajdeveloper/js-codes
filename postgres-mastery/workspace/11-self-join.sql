@@ -1,0 +1,42 @@
+-- ╔══════════════════════════════════════════════════════════╗
+--   Problem 11: Self JOIN — Employees and Their Managers
+--   [Joins]  [Medium]
+--   node coach.js problem 11   → guiding questions
+--   node coach.js hint 11 1    → first hint (up to 3)
+-- ╚══════════════════════════════════════════════════════════╝
+
+-- PROBLEM ──────────────────────────────────────────────────
+-- `employees` references itself: manager_id points back to
+-- another row's employee_id.
+--
+--   employees
+--   ┌─────────────┬───────────┬────────────┐
+--   │ employee_id │ full_name │ manager_id │
+--   ├─────────────┼───────────┼────────────┤
+--   │ 1           │ CEO Jane  │ NULL       │  ← no manager
+--   │ 2           │ Alice     │ 1          │
+--   │ 3           │ Bob       │ 1          │
+--   └─────────────┴───────────┴────────────┘
+--
+-- Return employee_id, employee_name, and manager_name for every
+-- employee — including the CEO, whose manager_name should be NULL.
+--
+--   Result:
+--   ┌─────────────┬───────────────┬──────────────┐
+--   │ employee_id │ employee_name │ manager_name │
+--   ├─────────────┼───────────────┼──────────────┤
+--   │ 1           │ CEO Jane      │ NULL         │
+--   │ 2           │ Alice         │ CEO Jane     │
+--   │ 3           │ Bob           │ CEO Jane     │
+--   └─────────────┴───────────────┴──────────────┘
+--
+-- THINK BEFORE CODING ──────────────────────────────────────
+-- • The table references itself via manager_id — what does
+--   that mean for aliasing?
+-- • How do you show the CEO (no manager) without losing that row?
+
+-- ▶▶▶ YOUR SOLUTION — write your query between the markers ▶▶▶
+
+-- your query here
+
+-- ◀◀◀ END SOLUTION ◀◀◀

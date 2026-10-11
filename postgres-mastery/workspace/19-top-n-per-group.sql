@@ -1,0 +1,45 @@
+-- ╔══════════════════════════════════════════════════════════╗
+--   Problem 19: Top-N Per Group With PARTITION BY
+--   [Window Functions]  [Hard]
+--   node coach.js problem 19   → guiding questions
+--   node coach.js hint 19 1    → first hint (up to 3)
+-- ╚══════════════════════════════════════════════════════════╝
+
+-- PROBLEM ──────────────────────────────────────────────────
+-- For EACH category, find the top 3 products by total revenue
+-- (quantity * unit_price, summed across order_items).
+--
+-- GROUP BY category alone can only give you ONE row per
+-- category — it cannot hand you the top 3 individual PRODUCTS
+-- within it. That needs a window function PARTITIONed by
+-- category, ranking products inside each partition.
+--
+--   category_name | product_name | revenue | rn
+--   --------------+--------------+---------+----
+--   Electronics   | Product 4    | 91234   | 1   ← #1 in Electronics
+--   Electronics   | Product 22   | 80111   | 2   ← #2 in Electronics
+--   Electronics   | Product 10   | 75432   | 3   ← #3 in Electronics
+--   Toys          | Product 9    | 68000   | 1   ← #1 in Toys (partition reset)
+--
+-- Steps:
+--   1. CTE: total revenue per product (join products → categories
+--      → order_items, GROUP BY product), plus
+--      ROW_NUMBER() OVER (PARTITION BY category ORDER BY revenue DESC)
+--      as `rn`.
+--   2. Outer query: keep only rn <= 3 (window functions can't be
+--      filtered directly in WHERE — that's why this needs to be
+--      a CTE/subquery).
+--
+-- Return: category_name, product_name, revenue (rounded), rn —
+-- ordered by category_name, then rn.
+--
+-- THINK BEFORE CODING ──────────────────────────────────────
+-- • Why can't you just GROUP BY category and LIMIT 3?
+-- • How do you filter on the result of a window function, given
+--   window functions cannot appear in WHERE?
+
+-- ▶▶▶ YOUR SOLUTION — write your query between the markers ▶▶▶
+
+-- your query here
+
+-- ◀◀◀ END SOLUTION ◀◀◀
